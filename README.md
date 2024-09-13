@@ -64,7 +64,4 @@ This tool is licensed under the MIT License. See the [LICENSE](LICENSE) file for
 
 For any questions or issues, please contact [gauravbhattacharjee54@gmail.com](mailto:gauravbhattacharjee54@gmail.com).
 
----
-
 **Disclaimer:** The creator of this tool assumes no responsibility for its misuse. Use it responsibly and only in legal and ethical contexts.
-```
