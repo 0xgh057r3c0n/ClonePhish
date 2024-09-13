@@ -1,6 +1,6 @@
 # ClonePhish
 
-**ClonePhish** is a Python tool designed for social engineering and security research. It allows users to clone websites, host them locally, and capture user inputs and system information for analysis.
+**ClonePhish** is a Python tool designed for social engineering and educational purposes. It allows users to clone websites, host them locally, and capture user inputs and system information for analysis.
 ![logo](logo.png)
 
 ## Features
