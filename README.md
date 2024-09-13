@@ -1,16 +1,16 @@
 # ClonePhish
 
-`ClonePhish` is a Python tool for cloning websites and setting up a local phishing server. It clones a specified website, modifies it to collect credentials and system information, and serves it locally to capture data from visitors.
+`ClonePhish` is a Python tool designed to clone websites and host them locally for phishing and security research purposes. This tool can capture system information and user inputs, logging them for analysis. 
+
+**Note:** This tool should only be used in a legal and ethical manner. Ensure you have explicit permission to test any website with this tool.
 
 ## Features
+- Clone a website and serve it locally.
+- Capture and log system information (e.g., User-Agent, screen resolution).
+- Log user input fields (e.g., email, password) from the cloned forms.
+- Redirect users to the original website after form submission.
 
-- **Website Cloning:** Fetches and saves the HTML of a given website.
-- **Phishing Capabilities:** Alters forms to submit data to the local server.
-- **System Information Collection:** Collects user system information such as User-Agent, screen resolution, timezone, and language.
-- **Credential Logging:** Captures and logs credentials submitted via the cloned forms.
-- **IP Address Logging:** Logs the IP address of visitors.
-
-## Requirements
+## Prerequisites
 
 - Python 3.x
 - Required Python packages: `requests`, `beautifulsoup4`, `colorama`
@@ -23,45 +23,57 @@ pip install requests beautifulsoup4 colorama
 
 ## Usage
 
-1. **Clone the Repository:**
+1. **Clone a Website and Start the Server:**
+
+   Run the script with the `-d` option to specify the domain of the website you want to clone:
 
    ```bash
-   git clone https://github.com/0xgh057r3c0n/ClonePhish.git
-   cd ClonePhish
+   python3 ClonePhish.py -d http://example.com
    ```
 
-2. **Run the Tool:**
+2. **Access the Cloned Website:**
 
-   ```bash
-   python3 ClonePhish.py -d <target-url>
-   ```
+   Open a web browser and navigate to the server address printed in the terminal, e.g., `http://192.168.29.95:8080/`.
 
-   Replace `<target-url>` with the URL of the website you want to clone. For example:
+3. **Monitor Logs:**
 
-   ```bash
-   python3 ClonePhish.py -d https://example.com
-   ```
+   The tool will log captured system information and form data to the terminal and save them to files:
+   
+   - `stolen_credentials.txt` for user credentials.
+   - `system_info.txt` for system information.
 
-3. **Access the Local Server:**
+## Example Output
 
-   After running the tool, it will start a local server. You can access it by navigating to `http://<local-ip>:8080` in your web browser.
+**Terminal Output:**
 
-## How It Works
+```
+[+] Received system info:
+   User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0
+   Screen Resolution: 1366x768
+   Timezone: Asia/Kolkata
+   Language: en-US
 
-- **Fetching HTML:** The tool fetches the HTML content of the specified URL.
-- **Modifying HTML:** It modifies form actions and injects JavaScript to collect system information.
-- **Starting the Server:** Hosts the modified HTML locally and listens for incoming requests to capture credentials and system information.
+[+] Received form data:
+   email: user@example.com
+   password: secret123
+```
 
-## Ethical Considerations
+**Files Created:**
 
-**WARNING:** This tool is intended for educational purposes and should only be used in environments where you have explicit permission to conduct security testing or phishing simulations. Unauthorized use of this tool is illegal and unethical.
+- `stolen_credentials.txt`:
+  ```
+  Username: user@example.com
+  Password: secret123
+  ```
+
+- `system_info.txt`:
+  ```
+  User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0
+  Screen Resolution: 1366x768
+  Timezone: Asia/Kolkata
+  Language: en-US
+  ```
 
 ## License
 
-This tool is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
-
-## Contact
-
-For any questions or issues, please contact [gauravbhattacharjee54@gmail.com](mailto:gauravbhattacharjee54@gmail.com).
-
-**Disclaimer:** The creator of this tool assumes no responsibility for its misuse. Use it responsibly and only in legal and ethical contexts.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
