@@ -26,7 +26,7 @@ pip install requests beautifulsoup4 colorama
 1. **Clone the Repository:**
 
    ```bash
-   git clone https://github.com/yourusername/ClonePhish.git
+   git clone https://github.com/0xgh057r3c0n/ClonePhish.git
    cd ClonePhish
    ```
 
