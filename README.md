@@ -1,6 +1,6 @@
-# ClonePhish.py
+# ClonePhish
 
-`ClonePhish.py` is a Python tool for cloning websites and setting up a local phishing server. It clones a specified website, modifies it to collect credentials and system information, and serves it locally to capture data from visitors.
+`ClonePhish` is a Python tool for cloning websites and setting up a local phishing server. It clones a specified website, modifies it to collect credentials and system information, and serves it locally to capture data from visitors.
 
 ## Features
 
