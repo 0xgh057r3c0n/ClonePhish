@@ -1,7 +1,7 @@
 # ClonePhish
 
 `ClonePhish` is a Python tool designed to clone websites and host them locally for phishing and security research purposes. This tool can capture system information and user inputs, logging them for analysis. 
-
+![logo](logo.png)
 **Note:** This tool should only be used in a legal and ethical manner. Ensure you have explicit permission to test any website with this tool.
 
 ## Features
