@@ -12,7 +12,7 @@
 
 ## ⚠️ **Important: Ethical Use Only!**
 
-`ClonePhish.py` is intended solely for educational and research purposes within controlled environments. Always ensure you have explicit permission before using this tool. Unauthorized use for phishing or other malicious activities is illegal and unethical.
+`ClonePhish` is intended solely for educational and research purposes within controlled environments. Always ensure you have explicit permission before using this tool. Unauthorized use for phishing or other malicious activities is illegal and unethical.
 
 ## Installation
 
@@ -68,7 +68,7 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Disclaimer
 
-This tool is intended for ethical use and research purposes only. The author and contributors are not responsible for any misuse of the tool. Always use responsibly and with proper authorization.
+This tool is intended for ethical use and educational purposes only. The author and contributors are not responsible for any misuse of the tool. Always use responsibly and with proper authorization.
 
 ## Contact
 
