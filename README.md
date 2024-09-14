@@ -43,7 +43,7 @@
 
 2. **Access the Cloned Website:**
 
-   Once the server is running, you can access the cloned site locally. The tool will log system information and user inputs to Terminal. You can access it by navigating to `http://192.168.29.95:8080/` in your web browser.
+   Once the server is running, you can access the cloned site locally. The tool will log system information and user inputs to Terminal. You can access the cloned site by navigating to `http://192.168.29.95:8080/` popping in your terminal to your web browser.
 
 
 ## Example Output
