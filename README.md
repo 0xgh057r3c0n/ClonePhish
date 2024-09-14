@@ -43,14 +43,8 @@
 
 2. **Access the Cloned Website:**
 
-   Open a web browser and navigate to the server address printed in the terminal, e.g., `http://192.168.29.95:8080/`.
+  Once the server is running, you can access the cloned site locally. The tool will log system information and user inputs to Terminal,You can access it by navigating to `http://192.168.29.95:8080/` in your web browser.
 
-3. **Monitor Logs:**
-
-   The tool will log captured system information and form data to the terminal and save them to files:
-   
-   - `stolen_credentials.txt` for user credentials.
-   - `system_info.txt` for system information.
 
 ## Example Output
 
