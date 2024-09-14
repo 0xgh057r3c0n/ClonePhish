@@ -33,11 +33,7 @@
 
 ## Usage
 
-1. **Prepare the Tool:**
-
-   Edit the `ClonePhish.py` script to set the desired target URL.
-
-2. **Run the Tool:**
+1. **Run the Tool:**
 
    ```bash
    python3 ClonePhish.py -d <target-url>
@@ -45,7 +41,7 @@
 
    Replace `<target-url>` with the URL of the website you wish to clone.
 
-3. **Access the Tool:**
+2. **Access the Tool:**
 
    Once the server is running, you can access the cloned site locally. The tool will log system information and user inputs to text files in the current directory.
 
