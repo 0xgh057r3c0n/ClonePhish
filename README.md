@@ -61,6 +61,21 @@
    email: user@example.com
    password: secret123
 ```
+**Files Created:**
+
+- `stolen_credentials.txt`:
+  ```
+  Username: user@example.com
+  Password: secret123
+  ```
+
+- `system_info.txt`:
+  ```
+  User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0
+  Screen Resolution: 1366x768
+  Timezone: Asia/Kolkata
+  Language: en-US
+  ```
 
 ## Contributing
 
