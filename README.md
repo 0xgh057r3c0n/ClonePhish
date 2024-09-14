@@ -33,26 +33,56 @@
 
 ## Usage
 
-1. **Run the Tool:**
+1. **Clone a Website and Start the Server:**
+
+   Run the script with the `-d` option to specify the domain of the website you want to clone:
 
    ```bash
-   python3 ClonePhish.py -d <target-url>
+   python3 ClonePhish.py -d http://example.com
    ```
 
-   Replace `<target-url>` with the URL of the website you wish to clone.
+2. **Access the Cloned Website:**
 
-2. **Access the Tool:**
+   Open a web browser and navigate to the server address printed in the terminal, e.g., `http://192.168.29.95:8080/`.
 
-   Once the server is running, you can access the cloned site locally. The tool will log system information and user inputs to text files in the current directory.
+3. **Monitor Logs:**
+
+   The tool will log captured system information and form data to the terminal and save them to files:
+   
+   - `stolen_credentials.txt` for user credentials.
+   - `system_info.txt` for system information.
 
 ## Example Output
 
-The tool will display logs of captured user inputs and system details, such as:
+**Terminal Output:**
 
-- **User-Agent:** Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0
-- **Screen Resolution:** 1366x768
-- **Timezone:** Asia/Kolkata
-- **Language:** en-US
+```
+[+] Received system info:
+   User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0
+   Screen Resolution: 1366x768
+   Timezone: Asia/Kolkata
+   Language: en-US
+
+[+] Received form data:
+   email: user@example.com
+   password: secret123
+```
+
+**Files Created:**
+
+- `stolen_credentials.txt`:
+  ```
+  Username: user@example.com
+  Password: secret123
+  ```
+
+- `system_info.txt`:
+  ```
+  User-Agent: Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0
+  Screen Resolution: 1366x768
+  Timezone: Asia/Kolkata
+  Language: en-US
+  ```
 
 ## Contributing
 
